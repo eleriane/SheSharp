@@ -56,7 +56,7 @@ namespace DotNetConf
             // Ativa o Swagger UI
             app.UseSwaggerUI(opt =>
             {
-                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoAPI V1");
+                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "SheSharp V1");
             });
 
             app.UseRouting();
