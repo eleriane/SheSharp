@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using DotNetConf.Data;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace DotNetConf
 {
@@ -39,11 +40,25 @@ namespace DotNetConf
                 new QueryStringApiVersionReader("v"));
             });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SheSharpAPI", Version = "v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Ativa o Swagger
+            app.UseSwagger();
+
+            // Ativa o Swagger UI
+            app.UseSwaggerUI(opt =>
+            {
+                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoAPI V1");
+            });
+
             app.UseRouting();
 
             app.UseEndpoints(cfg =>

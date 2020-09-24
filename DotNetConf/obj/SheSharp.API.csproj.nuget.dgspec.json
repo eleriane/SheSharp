@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nane-Admin\\Documents\\_Comunidade\\DotNetFloripa\\Projeto\\DotNetConf\\SheSharp.API.csproj": {}
+    "C:\\Users\\Nane-Admin\\source\\repos\\SheSharp\\DotNetConf\\SheSharp.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nane-Admin\\Documents\\_Comunidade\\DotNetFloripa\\Projeto\\DotNetConf\\SheSharp.API.csproj": {
+    "C:\\Users\\Nane-Admin\\source\\repos\\SheSharp\\DotNetConf\\SheSharp.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nane-Admin\\Documents\\_Comunidade\\DotNetFloripa\\Projeto\\DotNetConf\\SheSharp.API.csproj",
+        "projectUniqueName": "C:\\Users\\Nane-Admin\\source\\repos\\SheSharp\\DotNetConf\\SheSharp.API.csproj",
         "projectName": "SheSharp.API",
-        "projectPath": "C:\\Users\\Nane-Admin\\Documents\\_Comunidade\\DotNetFloripa\\Projeto\\DotNetConf\\SheSharp.API.csproj",
+        "projectPath": "C:\\Users\\Nane-Admin\\source\\repos\\SheSharp\\DotNetConf\\SheSharp.API.csproj",
         "packagesPath": "C:\\Users\\Nane-Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nane-Admin\\Documents\\_Comunidade\\DotNetFloripa\\Projeto\\DotNetConf\\obj\\",
+        "outputPath": "C:\\Users\\Nane-Admin\\source\\repos\\SheSharp\\DotNetConf\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -56,6 +56,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
             }
           },
           "imports": [
