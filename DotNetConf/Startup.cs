@@ -11,7 +11,6 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Newtonsoft.Json;
-using Microsoft.OpenApi.Models;
 
 namespace DotNetConf
 {
@@ -55,12 +54,8 @@ namespace DotNetConf
                 new QueryStringApiVersionReader("v"));
             });
 
-            //services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Developers Women Conference API", Version = "v1", Description = "Esta API é um exemplo de documentação" });
-                c.SwaggerDoc("v2", new OpenApiInfo { Title = "Developers Women Conference API", Version = "v2", Description = "Esta API é um exemplo de documentação" });
-            });
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,20 +65,18 @@ namespace DotNetConf
             {
                 app.UseDeveloperExceptionPage();
             }
+
             //Ativa o Swagger
             app.UseSwagger();
 
             // Ativa o Swagger UI
             app.UseSwaggerUI(opt =>
             {
-                //foreach (var description in provider.ApiVersionDescriptions)
-                //{
-                //    opt.SwaggerEndpoint(
-                //    $"/swagger/{description.GroupName}/swagger.json",
-                //    description.GroupName.ToUpperInvariant());
-                //}
-                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
-                opt.SwaggerEndpoint("/swagger/v2/swagger.json", "V2");
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    opt.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                    description.GroupName.ToUpperInvariant());
+                }
 
                 opt.DocExpansion(DocExpansion.List);
             });
