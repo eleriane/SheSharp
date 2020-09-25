@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using DotNetConf.Data;
 using DotNetConf.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetConf.Controllers
+namespace DotNetConf.Controllers.v1
 {
-
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    [ApiVersion("1.1")]
 
     public class CustomersController : ControllerBase
     {
@@ -27,7 +22,7 @@ namespace DotNetConf.Controllers
 
         // GET api/values
         [HttpGet]
-        public IActionResult Get()
+        public ActionResult GetAll()
         {
             return Ok(_ctx.Customers
               .Include(c => c.Address)
@@ -39,7 +34,7 @@ namespace DotNetConf.Controllers
         // GET api/values/5
         [HttpGet("{id}")]
         [MapToApiVersion("1.0")]
-        public IActionResult Get(int id)
+        public ActionResult Get(int id)
         {
             var customer = _ctx.Customers
               .Include(c => c.Address)
@@ -52,27 +47,6 @@ namespace DotNetConf.Controllers
 
             return Ok(customer);
         }
-
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        [MapToApiVersion("1.1")]
-        public IActionResult Get11(int id)
-        {
-            var customer = _ctx.Customers
-              .Include(c => c.Address)
-              .Include(c => c.Orders).ThenInclude(o => o.Items).ThenInclude(i => i.Product)
-              .OrderBy(c => c.Name)
-              .Where(c => c.Id == id)
-              .FirstOrDefault();
-
-            if (customer == null) return NotFound();
-
-            return Ok(customer);
-        }
-
-
-
 
         // POST api/values
         [HttpPost]
@@ -89,6 +63,5 @@ namespace DotNetConf.Controllers
 
             return BadRequest();
         }
-
     }
 }
