@@ -26,7 +26,7 @@ namespace DotNetConf
             var info = new OpenApiInfo()
             {
                 Title = "Developers Women Conference API",
-                Version = "v1",
+                Version = description.ApiVersion.ToString(),
                 Description = "Esta API é um exemplo de documentação",
                 Contact = new OpenApiContact() { Name = "DWC!!!!", Email = "dwc@mail.com" }
             };
